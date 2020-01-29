@@ -15,6 +15,12 @@
         .form-group {
             background-color:maroon;
         }
+        .form-group2 {
+            background-color:gray;
+        }
+        .form-group3 {
+            background-color:white;
+        }
         .form-check-input {
             color: #80ba90;
         }
@@ -27,24 +33,31 @@
     Shoaib Jakvani
     </p>
     
-    <form id="orderOptions">
         <div class="form-group form-check-inline form-control">
-            <!--label for="form-name">Enter your name</label-->
+            <form>
+            <!--label for="form-name">Name</label-->
            
             <input class="form-check-input" type="text" id="name" placeholder="Enter your name">
-        
+            </form>
+    </div>
+        <div class="form-group2 form-check-inline form-control">
+    <form id="orderOptions">
             <input class="form-check-input" type="radio" id="eatin" name="Eating" value="Eat in">Eat in 
             <input class="form-check-input" type="radio" id="carryout" name="Eating" value="Carry out">Carry out 
             <input class="form-check-input" type="radio" id="delivery" name="Eating" value="Delivery">Delivery 
-
+            </form> 
+    </div>
+    <div class="form-group3 form-check-inline form-control">
+    <form id="foodOptions">
             <select id="foodType">
                 <option value="pakistani">Pakistani</option>
                 <option value="italian">Italian</option>
                 <option value="fast-food">Fast food</option>
             </select>
-        </div>
+        
         
     </form>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
