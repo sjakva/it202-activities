@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<meta charset="UTF-8">
+
+<!-- BOOTSTRAP CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<title>Activity 4.3</title>
+    
+</head>
+
+<body>
+    
+<div class="card template" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">NAME</h5>
+    <h6 class="card-subtitle mb-2 text-muted">DEPARTMENT</h6>
+    <p class="card-text">SALARY</p>
+<!--     <a href="#" class="card-link">LINK 1</a>
+    <a href="#" class="card-link">LINK 2</a> -->
+  </div>
+</div>
+
+    <script> // fetch request 
+        let apiEndPoint = "https://data.cityofchicago.org/resource/xzkq-xp2w.json?$LIMIT=100";
+        
+        fetch(apiEndPoint)
+        .then(response => {return response.json()})
+        .then(json => {for (let val of json) 
+        {   // loops through each item in array
+            
+//             var para = document.createElement("P");               // Create a <p> element
+//             para.innerText = val["name"] + ", " + val["department"] + ", " + val["job_titles"];                         // Insert text
+//             //para.innerText = val["deptartment"];
+//             //para.innerText = val["job_titles"];
+//             document.body.appendChild(para);                      // Append <p> to <body> 
+            // loops through and creates title cards for each entry 
+            let clone = document.querySelector(".template").cloneNode(true);
+            clone.classList.remove("template");
+            let name = clone.firstElementChild.firstElementChild;
+            name.textContent = val["name"];
+            let dept = name.nextElementSibling;
+            dept.textContent = val["department"];
+            let salary = dept.nextElementSibling;
+            salary.textContent = val["annual_salary"];
+            document.body.append(clone);
+            
+            
+            
+        }
+                      })
+        .catch(err => alert(err))
+    </script>
+    
+</body>
+
+</html>
