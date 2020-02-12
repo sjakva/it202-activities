@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<meta charset="UTF-8">
+
+<!-- BOOTSTRAP CSS -->
+<!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"-->
+    
+<title>NYT</title>
+    
+</head>
+
+<body>
+
+    <script> // fetch request 
+        let apiEndPoint = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Chicago&api-key=9GysxqFm0209WeSE2gjHstS85rxmNSwv";
+        
+        fetch(apiEndPoint)
+        .then(response => {return response.json()})
+        .then(json => {
+            
+            for (let article of json.response.docs){
+                let p = document.createElement("p");
+                p.textContent = article["headline"]["main"];
+                document.body.append(p)
+            }
+            
+//             let h1 = document.createElement("h1"); // set heading to title 
+//             h1.textContent = json.response.docs["headline"];
+//             document.body.append(h1);
+            
+        })
+        .catch(err => alert(err))
+    </script>
+    
+</body>
+
+</html>
