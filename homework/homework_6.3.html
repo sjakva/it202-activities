@@ -2,7 +2,7 @@
 <html>
     <head><title>Canvas Demo</title></head>
     <body>
-        <canvas id="canvas-demo" width="400" height="400" style="background:#248c6d">
+        <canvas id="canvas-demo" width="325" height="325l" style="background:#248c6d" onload="drawName()">
              This will be displayed if your browser doesn't
              support the canvas element. The closing tag is
              necessary.
@@ -13,9 +13,9 @@
             // canvas-demo.js
 
 let demoCanvas = document.getElementById("canvas-demo").getContext("2d");
-
-window.onload = 
-    function drawName() {// make sure to use onload
+            
+    function drawName() 
+    {// make sure to use onload
     
     /* Add code here as we go!!! @nodocs
      */
@@ -47,6 +47,41 @@ window.onload =
     // in a separate path later
     
     }
+            
+    function drawShape() 
+    {// make sure to use onload
+    
+    /* Add code here as we go!!! @nodocs
+     */
+
+    // Calling this isn't necessary, but a good practice.
+    demoCanvas.beginPath();
+    
+    demoCanvas.lineWidth = 10;
+    demoCanvas.strokeStyle = "#e8b358";
+    
+    demoCanvas.rect(10, 10, 300, 300);
+
+    demoCanvas.stroke();// draws (by outlining our shapes in the path)
+
+    demoCanvas.closePath();// this is required if you want to draw
+    // in a separate path later
+    
+    }
+            
+    function writeUIN() 
+    {
+        
+        demoCanvas.font = "20px Georgia";
+        demoCanvas.fillStyle = "#ba4941";
+        demoCanvas.fillText("660626144", 200, 200);
+        
+    }
+
+window.onload= drawName(); 
+window.onload= drawShape();
+window.onload= writeUIN();
+            
         
         </script>
     </body>
