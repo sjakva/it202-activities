@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<meta charset="UTF-8">
+    
+<title>Dexie Activity</title>
+    
+</head>
+    
+<body>
+    
+<!-- Include dexie.js -->
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+
+<script>
+ 
+    //
+    // Define database
+    //
+    var db = new Dexie("MyFriendDB");
+    db.version(1).stores({
+        friends: '++id,name,age',
+        enemies: '++id, name'
+    });
+    
+    db.friends.where("age").equals(22).toArray()
+    .then (data => console.log(data))
+    
+    
+</script>
+    
+    
+</body>
