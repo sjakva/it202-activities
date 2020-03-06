@@ -22,9 +22,9 @@
     <div id="map"></div>
     <script>
 
-      function initMap() {
-        var uluru = {lat: 41.85, lng: -87.65};
-        var map = new google.maps.Map(document.getElementById('map'), {
+      initMap = () => {
+        let uluru = {lat: 41.85, lng: -87.65};
+        let map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
           center: uluru
         });
@@ -47,7 +47,10 @@
 //           
           
           let infowindow = new google.maps.InfoWindow({
-          content: i.dba_name + ", " + i.facility_type + ", " + i.address + ", " + i.inspection_date.split("T", 1) + ", " + i.results
+          content: 
+              '<div id="content">'+'<div id="siteNotice">'+'</div>'+'<h1 id="name">'+i.dba_name+'</h1><p>'
+              + i.address + '<br>' + i.facility_type + '<br>' + i.inspection_date.split("T",1) + ', ' + i.results +'<br>'
+              + '</p></div>'
           });
           
           let marker = new google.maps.Marker({
