@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Activity 9.1</title>
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+</head>
+
+<body>
+    <h1>Activity 9.1</h1>
+    
+    <header> 
+          <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+      <span class="mdc-top-app-bar__title">Title</span>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">file_download</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Print this page">print</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
+    </section>
+  </div>
+    </header>
+    
+    <button class="mdc-button mdc-button--raised">
+        <div class="mdc-button__ripple">
+        </div>
+        <span class="mdc-button__label">Button</span>
+    </button>
+    
+    <script>
+        mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
+        
+        import {MDCTopAppBar} from '@material/top-app-bar';
+
+        // Instantiation
+        let topAppBarElement = document.querySelector('.mdc-top-app-bar');
+        let topAppBar = new MDCTopAppBar(topAppBarElement);
+    </script>
+    
+    
+</body>
+
+</html>
