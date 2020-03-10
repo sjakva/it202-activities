@@ -13,10 +13,12 @@
         @use "@material/top-app-bar/mdc-top-app-bar";
         @use "@material/icon-button/mdc-icon-button";
         
-        header {
+        body {
             margin: 0px;
-            top: 0px;
-            left: 0px;
+        }
+        
+        .color-theme {
+            background: #32c290
         }
         
     </style>
@@ -26,7 +28,7 @@
     <!--h1>Activity 9.1</h1-->
     
     <!--TOP APP BAR -->
-    <header class="mdc-top-app-bar">
+    <header class="mdc-top-app-bar color-theme">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
@@ -46,7 +48,7 @@
     <button class="mdc-button mdc-button--raised">
         <div class="mdc-button__ripple">
         </div>
-        <span class="mdc-button__label">Button</span>
+        <span class="mdc-button__label color-theme">Button</span>
     </button>
     
     </main>
