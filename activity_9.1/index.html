@@ -17,8 +17,8 @@
             margin: 0px;
         }
         
-        .color-theme {
-            background: #32c290
+        :root {
+            --mdc-theme-primary: #32c290
         }
         
     </style>
@@ -27,8 +27,30 @@
 <body>
     <!--h1>Activity 9.1</h1-->
     
+        <!-- MODAL DRAWER -->
+      <aside class="mdc-drawer mdc-drawer--modal">
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list">
+        <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+          <span class="mdc-list-item__text">Inbox</span>
+        </a>
+        <a class="mdc-list-item" href="#">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+          <span class="mdc-list-item__text">Outgoing</span>
+        </a>
+        <a class="mdc-list-item" href="#">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+          <span class="mdc-list-item__text">Drafts</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+    
+  <div class="mdc-drawer-scrim"></div>
+    
     <!--TOP APP BAR -->
-    <header class="mdc-top-app-bar color-theme">
+    <header class="mdc-top-app-bar">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
@@ -48,7 +70,7 @@
     <button class="mdc-button mdc-button--raised">
         <div class="mdc-button__ripple">
         </div>
-        <span class="mdc-button__label color-theme">Button</span>
+        <span class="mdc-button__label">Button</span>
     </button>
     
     </main>
@@ -57,8 +79,12 @@
     <script>
         mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
         mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('header.mdc-top-app-bar'));
+        const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
         
-        
+        document.querySelector(".mdc-top-app-bar__navigation-icon")
+      .addEventListener("click", 
+          (e) => {drawer.open = true;}
+      );
     </script>
     
     
