@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Activity 9.1</title>
+<title>Activity 9.2</title>
     
     <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -32,18 +32,18 @@
     <!--h1>Activity 9.1</h1-->
     
         <!-- MODAL DRAWER -->
-      <aside class="mdc-drawer mdc-drawer--modal">
+    <aside class="mdc-drawer mdc-drawer--modal">
     <div class="mdc-drawer__content">
       <nav class="mdc-list">
-        <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+        <a class="mdc-list-item mdc-list-item--activated" href="#home" aria-current="page">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
           <span class="mdc-list-item__text">Home</span>
         </a>
-        <a class="mdc-list-item" href="#">
+        <a class="mdc-list-item" href="#data">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">description</i>
           <span class="mdc-list-item__text">Data</span>
         </a>
-        <a class="mdc-list-item" href="#">
+        <a class="mdc-list-item" href="#about">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">insert_emoticon</i>
           <span class="mdc-list-item__text">About</span>
         </a>
@@ -68,40 +68,46 @@
   </div>
 </header>
     
-    <main class="mdc-top-app-bar--fixed-adjust">
-        <div class="view" id="home">
-            Home
-        </div>
-        <div class="view" id="data">
-            Data
-        </div>
-        <div class="view" id="about">
-            About
-        </div>
-        <!-- BUTTON -->
-    <button class="mdc-button mdc-button--raised">
+  <main class="mdc-top-app-bar--fixed-adjust">
+    <div id="home" class="view">Home</div>
+    <div id="data" class="view">Data</div>
+    <div id="about" class="view">About</div>
+        
+         <!-- BUTTON -->
+<!--     <button class="mdc-button mdc-button--raised">
         <div class="mdc-button__ripple">
         </div>
         <span class="mdc-button__label">Button</span>
-    </button>
+    </button>  -->
     
     </main>
     
     
     <script>
-        mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
+        //mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
         mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('header.mdc-top-app-bar'));
         const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+        
+        const hideViews = () => {
+            document.querySelectorAll("div.view").forEach(item => {
+                item.style.display = "none";
+            });
+        }
         
         document.querySelector(".mdc-top-app-bar__navigation-icon")
           .addEventListener("click", 
               (e) => {drawer.open = true;}
           );
         
-        document.querySelectorAll('.view').forEach(item => {
+        document.querySelectorAll("aside.mdc-drawer a.mdc-list-item").forEach(item => {
           item.addEventListener('click', event => {
             //handle click
+            console.log(item.getAttribute("href"));
             
+            hideViews();
+            let target = getAttribute("href");
+            document.querySelector(target).style.display = "block";
+            drawer.open = false;
           })
         });
     </script>
