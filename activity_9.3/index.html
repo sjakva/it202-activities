@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Activity 9.3</title>
+    
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+    
+    <style>
+        
+        .list-template {display:none;}
+        
+    </style>
+</head>
+
+<body>
+
+    <!--h1>Activity 9.3</h1-->
+    
+    
+            <!---- BUTTONS ---->
+    <!-- GRAF -->
+    <button id="graf" class="data-button mdc-button mdc-button--raised">
+        <div class="mdc-button__ripple">
+        </div>
+        <span class="mdc-button__label">Graffiti Removal Requests</span>
+    </button>
+    
+    <!-- SFD -->
+    <button id="sfd" class="data-button mdc-button mdc-button--raised">
+        <div class="mdc-button__ripple">
+        </div>
+        <span class="mdc-button__label">Street Light Out Complaints</span>
+    </button>
+    
+    <!-- CSF -->
+    <button id="csf" class="data-button mdc-button mdc-button--raised">
+        <div class="mdc-button__ripple">
+        </div>
+        <span class="mdc-button__label">Consumer Fraud Complaints</span>
+    </button>
+    
+    
+    <div id="data">    
+    <ul class="mdc-list mdc-list--two-line mdc-list--avatar-list">
+        
+<!--       <li class="list-template mdc-list-item" tabindex="0">
+        <span class="mdc-list-item__text">Single-line item</span>
+      </li> -->
+      
+    </ul>        
+    </div>
+    
+                    <!-- doesn't matter if visible element is inside list -->
+<!--       <li class="list-template mdc-list-item" tabindex="0">
+        <span class="mdc-list-item__text">Single-line item</span>
+      </li> -->
+    
+    <li class="list-template mdc-list-item mdc-ripple-upgraded">
+        <span class="mdc-list-item__graphic material-icons" aria-hidden="true">folder</span>
+        <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text">Cat Photos</span>
+            <span class="mdc-list-item__secondary-text">22 Dec 2017</span>
+        </span>
+        <span class="mdc-list-item__meta material-icons" aria-hidden="true">info</span>
+    </li>
+    
+    
+    <script>
+    
+        const apiEndpoint = 
+              "https://data.cityofchicago.org/resource/v6vf-nfxy.json?";
+                    // sr_short_code=GRAF
+        
+        const categoryIcons = {"GRAF":"gesture", "SFD":"wb_incandescent", "CSF":"local_atm"}
+        
+        document.querySelectorAll(".data-button").forEach(( node) => {
+            
+            node.addEventListener("click", (e) => {
+                let categoryCode = node.getAttribute("id");
+                // console.log(e);
+                // console.log(categoryCode);
+                let url = apiEndpoint + "sr_short_code=" + categoryCode.toUpperCase();
+                // console.log(url);
+                let dataList = document.querySelector("div#data ul.mdc-list");
+                
+                fetch(url)
+                    .then( (response) => {
+                    // console.log(response);
+                    return response.json();
+                })
+                    .then( (json) => {
+                    // console.log(json);
+                    
+                    while (dataList.firstChild)
+                        dataList.removeChild(dataList.firstChild);
+                    
+                    for (let record of json) {
+                        // console.log(record);
+                        
+                        // clone list-template ---
+                        let clone = document.querySelector(".list-template").cloneNode(true);
+                         //  also:  document.querySelector("div#data ul.mdc-list li.list-template").cloneNode()
+                        // console.log(clone);
+                        
+                        // remove template class ---
+                        clone.classList.remove("list-template");
+                        
+                        // set id attribute
+                        clone.setAttribute("data_sr_number", record["sr_number"]);
+                    
+                        // update value in span element ---
+//                         clone.querySelector("span").textContent = record["sr_number"];
+                        clone.querySelector(".mdc-list-item__primary-text").textContent = record["sr_number"];
+                        clone.querySelector(".mdc-list-item__secondary-text").textContent = record["street_address"] + ", " + record["status"];
+                        clone.querySelector(".mdc-list-item__graphic.material-icons").textContent = categoryIcons[record["sr_short_code"]];
+                        
+                        // append to list ---
+                        // document.querySelector("div#data ul.mdc-list").appendChild(clone);
+                        dataList.appendChild(clone);     // shortened 
+                        }
+                    })
+                })
+            });
+        
+    </script>
+    
+</body>
+
+</html>
