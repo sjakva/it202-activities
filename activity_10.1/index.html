@@ -58,6 +58,11 @@
         const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
         // console.log(dialog);
         
+        // record which option chosen 
+        dialog.listen('MDCDialog:closing', (e) => {
+            console.log("user picked the '", e.detail.action, "' option.");
+        })
+        
         document.querySelector('.dialog-button').addEventListener("click",
         (e) => {
             dialog.open();
